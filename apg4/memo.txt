@@ -1,0 +1,11 @@
+string str = "abcde";
+str.at(2) // c
+
+getline(cin, s) // 1行入力でsに格納
+
+vector<int> vec(N); 
+vec.push_back(10);
+vec.pop_back();
+
+for (char c : str) // <- for c in str
+
