@@ -26,49 +26,30 @@ void chmin(ll &a, ll b) { a = min(a, b); }
 void chmax(ll &a, ll b) { a = max(a, b); }
 int main(){
     ll n;
-    cin>>n;
-    vector<ll> a(n), b(n);
-    vector<pll> g(n);
-    map<pll, bool> mp;
-    rep(i, n){
-        cin>>a[i]>>b[i];
-        a[i]--, b[i]--;
-        mp[pll(a[i], b[i])]=true;
-        mp[pll(b[i], a[i])]=true;
-        g[i]=pll(a[i], b[i]);
+    string s;
+    cin>>n>>s;
+    ll oc=0, tc=0;
+    bool sl=false;
+    if(n%2==0){
+        coutn()
+        return 0;
     }
-    vector<ll> fv(2*n), bv(2*n);
-    rep(i, 2*n){
-        fv[i]=(i+1)%(2*n);
-        bv[i]=(i-1+(2*n))%(2*n);
+    ll m=n/2;
+    if(s[m]!='/'){
+        coutn()
+        return 0;
     }
-    // coutv(fv, n)
-    // codl()
-    // coutv(bv, n)
-    // codl()
-    ll cnt=0;
-    queue<pll> q;
-    rep(i, n){
-        if((fv[g[i].fst]==g[i].snd) or (fv[g[i].snd]==g[i].fst)){
-            // coc4(g[i].fst, g[i].snd, fv[g[i].fst], fv[g[i].snd])
-            q.push(g[i]);
-        }
-    }
-    while(!q.empty()){
-        ll x=q.front().fst, y=q.front().snd;
-        // coc2(x, y)
-        q.pop();
-        cnt++;
-        if(cnt==n){
+    rep(i, m){
+        if(s[i]!='1'){
             coutn()
             return 0;
         }
-        // coc4(fv[x], bv[x], fv[y], bv[y]);
-        if(fv[y]==x)swap(x, y);
-        fv[bv[x]]=fv[y];
-        bv[fv[y]]=bv[x];
-        // coc2(bv[x], fv[y]);
-        if(mp[pll(bv[x], fv[y])])q.push(pll(bv[x], fv[y]));
+    }
+    rep2(m+1, i, n){
+        if(s[i]!='2'){
+            coutn()
+            return 0;
+        }
     }
     couty()
 }

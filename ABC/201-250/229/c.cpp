@@ -25,50 +25,20 @@ using namespace std;
 void chmin(ll &a, ll b) { a = min(a, b); }
 void chmax(ll &a, ll b) { a = max(a, b); }
 int main(){
-    ll n;
-    cin>>n;
+    ll n, w;
+    cin>>n>>w;
     vector<ll> a(n), b(n);
-    vector<pll> g(n);
-    map<pll, bool> mp;
     rep(i, n){
         cin>>a[i]>>b[i];
-        a[i]--, b[i]--;
-        mp[pll(a[i], b[i])]=true;
-        mp[pll(b[i], a[i])]=true;
-        g[i]=pll(a[i], b[i]);
     }
-    vector<ll> fv(2*n), bv(2*n);
-    rep(i, 2*n){
-        fv[i]=(i+1)%(2*n);
-        bv[i]=(i-1+(2*n))%(2*n);
-    }
-    // coutv(fv, n)
-    // codl()
-    // coutv(bv, n)
-    // codl()
-    ll cnt=0;
-    queue<pll> q;
+    vector<pll> c;
+    rep(i, n)c.push_back(pll(a[i], b[i]));
+    sort(c.rbegin(), c.rend());
+    ll ans=0;
     rep(i, n){
-        if((fv[g[i].fst]==g[i].snd) or (fv[g[i].snd]==g[i].fst)){
-            // coc4(g[i].fst, g[i].snd, fv[g[i].fst], fv[g[i].snd])
-            q.push(g[i]);
-        }
+        ll x=min(w, c[i].snd);        
+        ans+=c[i].fst*x;
+        w-=x;
     }
-    while(!q.empty()){
-        ll x=q.front().fst, y=q.front().snd;
-        // coc2(x, y)
-        q.pop();
-        cnt++;
-        if(cnt==n){
-            coutn()
-            return 0;
-        }
-        // coc4(fv[x], bv[x], fv[y], bv[y]);
-        if(fv[y]==x)swap(x, y);
-        fv[bv[x]]=fv[y];
-        bv[fv[y]]=bv[x];
-        // coc2(bv[x], fv[y]);
-        if(mp[pll(bv[x], fv[y])])q.push(pll(bv[x], fv[y]));
-    }
-    couty()
+    cout<<ans<<endl;
 }

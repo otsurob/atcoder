@@ -1,0 +1,101 @@
+例1
+入力
+7
+fashion books cosmetics electronics furniture handmade toys
+9
+register: 2024/04/01-10:00:00 user1 books 1000
+register: 2024/07/01-11:13:25 user1 game 5500
+purchase: 2024/09/01-02:11:53 user2 1
+sales-amount: 2024/10/15-13:00:00 user1
+complete: 2025/02/03-08:22:00 1
+sales-amount: 2025/04/06-16:03:24 user1
+sales-amount: 2025/04/07-20:23:15 user2
+delete: 2025/04/07-22:30:12 user1 1
+sales-amount: 2026/05/05-02:30:00 user1
+
+出力
+register: user1 registered the item 1
+register: invalid category
+purchase: user2 purchased the item 1
+sales-amount: 0 yen
+complete: the transaction for item 1 completed
+sales-amount: 1000 yen
+sales-amount: 0 yen
+delete: not for sale
+sales-amount: 0 yen
+
+
+例2
+入力
+7
+fashion books cosmetics electronics furniture handmade toys
+28
+register: 2024/04/01-10:00:00 user1 books 1000
+register: 2024/04/01-10:10:00 user2 fashion 5000
+delete: 2024/04/01-10:20:00 user2 2
+purchase: 2024/04/01-11:00:00 user3 1
+register: 2024/04/01-12:00:00 user1 game 10000
+get-registered: 2024/04/01-13:00:00 user1
+delete: 2024/04/01-14:00:00 user1 2
+register: 2024/04/01-15:00:00 user4 books 3000
+register: 2024/04/01-15:10:00 user1 toys 1
+delete: 2024/04/01-15:20:00 user4 4
+delete: 2024/04/01-15:30:00 user1 1
+purchase: 2024/04/01-16:00:00 user4 100
+purchase: 2024/04/01-16:10:00 user3 1
+complete: 2024/04/02-10:00:00 1
+complete: 2024/04/02-11:00:00 2
+purchase: 2024/04/02-12:00:00 user4 3
+complete: 2024/04/02-13:00:00 1
+register: 2024/04/02-14:00:00 user1 books 5000
+search: 2024/04/15-12:00:00 1 books newest
+search: 2024/04/15-13:00:00 2 books lowest
+get-registered: 2024/04/30-09:00:00 user1
+get-registered: 2024/04/30-10:00:00 user2
+get-purchased: 2024/04/30-11:00:00 user3
+purchase: 2024/05/01-17:00:00 user4 5
+sales-amount: 2024/05/02-00:00:00 user1
+search: 2024/05/02-12:00:00 1 electronics newest
+get-purchased: 2024/05/03-12:00:00 user1
+get-purchased: 2024/05/03-13:00:00 user4
+
+出力
+register: user1 registered the item 1
+register: user2 registered the item 2
+delete: user2 deleted the item 2
+purchase: user3 purchased the item 1
+register: invalid category
+get-registered: user1
+1. registered time = 2024/04/01-10:00:00, item ID = 1, price = 1000, category = books, Under Transaction
+delete: invalid item ID
+register: user4 registered the item 3
+register: user1 registered the item 4
+delete: unauthorized
+delete: not for sale
+purchase: invalid item ID
+purchase: not for sale
+complete: the transaction for item 1 completed
+complete: invalid item ID
+purchase: your own item
+complete: already completed
+register: user1 registered the item 5
+search:
+1. item ID = 5, price = 5000, registered time = 2024/04/02-14:00:00
+2. item ID = 3, price = 3000, registered time = 2024/04/01-15:00:00
+3. item ID = 1, price = 1000, registered time = 2024/04/01-10:00:00
+search:
+1. item ID = 3, price = 3000, registered time = 2024/04/01-15:00:00
+2. item ID = 5, price = 5000, registered time = 2024/04/02-14:00:00
+get-registered: user1
+1. registered time = 2024/04/02-14:00:00, item ID = 5, price = 5000, category = books, For Sale
+2. registered time = 2024/04/01-15:10:00, item ID = 4, price = 1, category = toys, For Sale
+3. registered time = 2024/04/01-10:00:00, item ID = 1, price = 1000, category = books, Transaction Completed
+get-registered: user2
+get-purchased: user3
+1. purchased time = 2024/04/01-11:00:00, item ID = 1, price = 1000, Transaction Completed
+purchase: user4 purchased the item 5
+sales-amount: 1000 yen
+search:
+get-purchased: user1
+get-purchased: user4
+1. purchased time = 2024/05/01-17:00:00, item ID = 5, price = 5000, Under Transaction
